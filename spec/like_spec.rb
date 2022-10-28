@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe likes_counter, type: :model do
+RSpec.describe Likes, type: :model do
   before(:all) do
     @user = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.',
                         posts_counter: 0)
