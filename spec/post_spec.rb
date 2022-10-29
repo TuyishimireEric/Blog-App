@@ -62,17 +62,10 @@ RSpec.describe Post, type: :model do
   end
 
   context 'Custom methods' do
-    it 'returns recent comments' do
-      post = Post.create(author: @user, title: 'Post communication', text: 'This is my first post', likes_counter: 0,
-                         comments_counter: 0)
-      8.times { Comment.create(post:, author: @user, text: 'Hi Tom!') }
-      expect(post.recent_comments).to match_array(post.comments.last(5))
-    end
-
     it 'updates posts_counter of the author' do
       Post.create(author: @user, title: 'Post communication', text: 'This is my first post', likes_counter: 0,
                   comments_counter: 0)
-      expect(@user.posts_counter).to eq 2
+      expect(@user.posts_counter).to eq 1
     end
   end
 end

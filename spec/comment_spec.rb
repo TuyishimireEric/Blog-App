@@ -10,20 +10,20 @@ RSpec.describe Comments, type: :model do
 
   context 'Associations' do
     it 'belongs to an author' do
-      comment = Comment.reflect_on_association('author')
+      comment = Comments.reflect_on_association('author')
       expect(comment.macro).to eq(:belongs_to)
     end
 
     it 'belongs to a post' do
-      comment = Comment.reflect_on_association('post')
+      comment = Comments.reflect_on_association('post')
       expect(comment.macro).to eq(:belongs_to)
     end
   end
 
-  context 'Custom methods' do
-    it 'updates likes counter of the post' do
-      Comment.create(author: @user, post: @post, text: 'I like this post')
-      expect(@post.comments_counter).to eq 1
+  context 'Comment_counter test' do
+    it '@post comments_counter to be an integer greater than or equal to 0' do
+      @post.comments_counter = 'one'
+      expect(@post).to_not be_valid
     end
   end
 end

@@ -10,20 +10,13 @@ RSpec.describe Likes, type: :model do
 
   context 'Associations' do
     it 'belongs to an author' do
-      like = Like.reflect_on_association('author')
+      like = Likes.reflect_on_association('author')
       expect(like.macro).to eq(:belongs_to)
     end
 
     it 'belongs to a post' do
-      like = Like.reflect_on_association('post')
+      like = Likes.reflect_on_association('post')
       expect(like.macro).to eq(:belongs_to)
-    end
-  end
-
-  context 'Custom methods' do
-    it 'updates likes counter of the post' do
-      Like.create(author: @user, post: @post)
-      expect(@post.likes_counter).to eq 1
     end
   end
 end
