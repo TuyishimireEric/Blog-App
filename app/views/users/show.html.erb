@@ -1,1 +1,18 @@
 <h1>Show user</h1>
+<div>
+  <%= render 'layouts/user_card', user: @user %>
+  <div>
+    <h3>Bio</h3>
+    <p><%= @user.bio %></p>
+  </div>
+  <ul>
+    <% @user.posts.each do |post| %>
+      <li>
+        <p><%= post.title %></p>
+        <p><%= truncate(post.text, length: 50) %></p>
+        <p>Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %></p>
+      </li>
+    <% end %>
+  </ul>
+  <button>See all posts</button>
+</div>
