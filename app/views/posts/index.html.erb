@@ -2,9 +2,8 @@
 
 
 <div>
-  <%= render 'layouts/user', user: @user %>
   <ul>
-    <% posts.each do |post| %>
+    <% @posts.each do |post| %>
       <li>
         <h3 class="mb-2 text-sm font-bold"><%= post.title %> #<%= post.id %></h3>
         <p><%= post.text %></p>
