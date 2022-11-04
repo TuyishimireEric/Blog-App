@@ -8,4 +8,3 @@ class Likes < ApplicationRecord
     post.increment!(:Likes_counter)
   end
 end
-
