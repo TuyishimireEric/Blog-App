@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new
   end
 
-  def create                                                                                                                                                                                                                               
+  def create
     @post = Post.find(params[:post_id])
     new_comment = current_user.comments.new(post_id: @post.id,
                                             author_id: current_user.id, text: comment_text)
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
 
   private
 
-  def comment_text                                                                                          
+  def comment_text
     params.require(:comments).permit(:text)[:text]
   end
 end
