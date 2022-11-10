@@ -1,9 +1,9 @@
 <h1>Posts#index</h1>
 
-
 <div>
+<%= image_tag('icon.jpg', class: "userPix")  %>
   <ul>
-    <% @posts.each do |post| %>
+    <% @user.posts.includes([:comments]).each do |post| %>
       <li>
         <h3 class="mb-2 text-sm font-bold"><%= post.title %> #<%= post.id %></h3>
         <p><%= post.text %></p>
