@@ -18,7 +18,7 @@ RSpec.describe 'Post Show', type: :request do
 
   it 'renders the picture of the user' do
     get user_posts_path(1)
-    expect(response.body).to include('https://i.imgur.com/1J3wZQx.jpg')
+    expect(response.body).to include('img')
   end
 
   it 'renders the number of likes of the post' do
