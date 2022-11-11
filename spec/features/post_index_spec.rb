@@ -35,5 +35,4 @@ RSpec.describe 'Post Show', type: :request do
     get user_posts_path(1)
     expect(response.body).to include('text1')
   end
-
 end
