@@ -5,7 +5,7 @@
 }
 
 body {
-  background-image: linear-gradient( 90deg, #81FBB8 10%, #28C76F 100%);
+  background-image: linear-gradient( 90deg, #81fbb8 10%, #28c76f 100%);
   width: 100vw;
   box-sizing: content-box;
 }
@@ -21,12 +21,12 @@ body {
 }
 
 .nav_bar h1 {
-  color: #81FBB8;
+  color: #81fbb8;
 }
 
 .nav_bar a {
   text-decoration: none;
-  background-color: #28C76F;
+  background-color: #28c76f;
   height: 20px;
   width: auto;
   padding: 2px 10px;
@@ -38,7 +38,7 @@ body {
   gap: 8%;
   margin: 20px 20%;
   background-color: #11301f2d;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
 }
 
 .user_info {
@@ -59,7 +59,7 @@ body {
   height: 20px;
   width: auto;
   padding: 2px 10px;
-  color: #81FBB8;
+  color: #81fbb8;
 }
 
 .user_info span{
@@ -73,7 +73,7 @@ body {
   height: 20px;
   width: auto;
   padding: 2px 10px;
-  color: #81FBB8;
+  color: #81fbb8;
 }
 
 img {
@@ -135,19 +135,19 @@ img {
   height: 40px;
   width: auto;
   padding: 2px 10px;
-  color: #81FBB8;
+  color: #81fbb8;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   border: none;
   border-radius: 4px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
   margin-top: 10px;
 }
 
 #all-posts a,
 #paginatation a {
-  color: #81FBB8;
+  color: #81fbb8;
   font-size: larger;
 }
 
