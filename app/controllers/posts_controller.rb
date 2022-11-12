@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   load_and_authorize_resource
+  # before_action :set_user, only: %i[index create show]
   def index
     @user = User.find(params[:user_id])
     @posts = Post.includes(comments: [:author]).where(posts: { author_id: @user.id })
@@ -14,18 +15,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    new_post = current_user.posts.new(post_params)
-    new_post.likes_counter = 0
-    new_post.comments_counter = 0
-
-    respond_to do |format|
-      format.html do
-        if new_post.save
-          redirect_to "/users/#{new_post.author_id}/posts/", notice: 'Post was successfully created.'
-        else
-          render :new, status: 'Error occured will creating post!'
-        end
-      end
+    @post = Post.new(post_params)
+    @post.author = current_user
+    @post.likes_counter = 0
+    @post.comments_counter = 0
+    if @post.save
+      redirect_to user_posts_path(current_user)
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -39,5 +36,13 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :text)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 end

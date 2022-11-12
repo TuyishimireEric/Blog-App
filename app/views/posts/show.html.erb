@@ -1,26 +1,22 @@
 <h1>Post Details</h1>
- <div class='bio font'>
-    <h4>Post:<%= @post.id %> by <%= @post.author.name %></h4> 
-    <h3><%=@post.title%></h3>
-     <div class='padd'>
-        <h5 id="comment<%=@post.id%>">Comments:<%= @post.comments_counter %></h5>
-        <h5 id="like<%=@post.id%>">Likes:<%= @post.likes_counter %></h5>
-     </div>
-    <h4><%= @post.text %></h4>
-  <% if can? :create, Like %>
-    <%= form_with url: "/posts/#{@post.id}/likes", scope: :like do |form| %>
-      <%= form.submit "Like this post" %>
-    <% end %>
-    <% end %>
-       <% if can? :create, Comment %>
-     <%= render partial: "create_comments", local: { post: @post } %> 
-      <% end %>
+<p><%= @post.title %> by <%= @post.author.name %> Comments <%= @post.comments_counter %>,
+  Likes <%= @post.likes_counter %></p>
 
-    <% @post.recent_comment.each do |comment| %>
-        <h5><%= comment.author.name %>: <%= comment.text %> </h5>
-        <% if can? :destroy, Comment %>
-         <%= button_to 'delete comment', "/posts/#{@post.id}/comments/#{comment.id}", method: :delete %>
-          <% end %>
+<p><%= @post.text %></p>
+
+<ul>
+  <% @post.comments.includes(:author).each do |comment| %>
+    <p><%= comment.author.name %> : <%= comment.text %></p>
+    <% if can? :destroy, comment %>
+      <%= link_to "Delete Comment", user_post_comment_path(@post.author, @post, comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
     <% end %>
-</div>
-<a href='/users/'><button>Go back</button></a>
+  <% end %>
+</ul>
+
+<%= form_with url: "/users/#{@post.author_id}/posts/#{@post.id}/likes" do |form| %>
+  <%= form.submit 'Like' %>
+<% end %>
+<% if can? :destroy, @post %>
+  <%= link_to "Delete post", user_post_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+<% end %>
+<%= link_to 'Add comment', new_user_post_comment_path(@user, @post) %>
